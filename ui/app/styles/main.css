@@ -81,3 +81,8 @@ body {
     border-bottom: 0;
   }
 }
+
+.myGrid {
+  width: 700px;
+  height: 250px;
+}

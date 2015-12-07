@@ -1,10 +1,10 @@
 <div>
-  <ul ng-repeat="resource in controller.resources">
-    <li>
-      <div>resource.id</div>
-      <div>resource.uniqueId</div>
-      <div>resource.name</div>
-      <div>resource.description</div>
-    </li>
-  </ul>
+    <div>
+        <input type="button"
+               class="btn btn-info pull-right"
+               value="Add New Resource"
+               ng-click="controller.addNewResource()"/>
+    </div>
+    <h2>My Resources</h2>
+    <div ui-grid="controller.resourcesGridOptions" class="myGrid"></div>
 </div>
