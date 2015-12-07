@@ -49,4 +49,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="IsMessageFromFinder" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ede07a26-3671-4c48-923b-dcadc0a2f263" ChangeDateTime="12/07/2015 13:57:48">
+    <Property Name="ElementName" Value="[dbo].[Message].[ConsversationId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Message]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ConversationId" />
+  </Operation>
 </Operations>

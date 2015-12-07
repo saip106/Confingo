@@ -18,6 +18,7 @@ namespace Confingo.DataAccess
         public User()
         {
             this.Resources = new HashSet<Resource>();
+            this.Conversations = new HashSet<Conversation>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace Confingo.DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resource> Resources { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conversation> Conversations { get; set; }
     }
 }

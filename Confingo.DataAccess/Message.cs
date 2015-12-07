@@ -16,8 +16,10 @@ namespace Confingo.DataAccess
     {
         public int Id { get; set; }
         public string MessageText { get; set; }
-        public int ConsversationId { get; set; }
+        public int ConversationId { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public bool IsMessageFromFinder { get; set; }
+    
+        public virtual Conversation Conversation { get; set; }
     }
 }

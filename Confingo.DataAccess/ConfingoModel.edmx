@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConfingoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ConfingoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Conversation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ResourceId" Type="int" Nullable="false" />
           <Property Name="FinderUserId" Type="int" Nullable="false" />
         </EntityType>
@@ -17,9 +17,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MessageText" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ConsversationId" Type="int" Nullable="false" />
+          <Property Name="ConversationId" Type="int" Nullable="false" />
           <Property Name="TimeStamp" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsMessageFromFinder" Type="bit" Nullable="false" />
         </EntityType>
@@ -41,6 +41,42 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Conversation_Resource">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+          <End Role="Conversation" Type="Self.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversation_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Conversation" Type="Self.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="FinderUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Conversation">
+          <End Role="Conversation" Type="Self.Conversation" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ConversationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Resource_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
@@ -58,16 +94,49 @@
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Conversation_Resource" Association="Self.FK_Conversation_Resource">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversation_User" Association="Self.FK_Conversation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Conversation" Association="Self.FK_Message_Conversation">
+            <End Role="Conversation" EntitySet="Conversation" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
           <AssociationSet Name="FK_Resource_User" Association="Self.FK_Resource_User">
             <End Role="User" EntitySet="User" />
             <End Role="Resource" EntitySet="Resource" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConfingoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ConfingoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Conversations" EntityType="ConfingoModel.Conversation" />
+          <EntitySet Name="Messages" EntityType="ConfingoModel.Message" />
+          <EntitySet Name="Resources" EntityType="ConfingoModel.Resource" />
+          <EntitySet Name="Users" EntityType="ConfingoModel.User" />
+          <AssociationSet Name="FK_Message_Conversation" Association="ConfingoModel.FK_Message_Conversation">
+            <End Role="Conversation" EntitySet="Conversations" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resource_User" Association="ConfingoModel.FK_Resource_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Resource" EntitySet="Resources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversation_Resource" Association="ConfingoModel.FK_Conversation_Resource">
+            <End Role="Resource" EntitySet="Resources" />
+            <End Role="Conversation" EntitySet="Conversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversation_User" Association="ConfingoModel.FK_Conversation_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Conversation" EntitySet="Conversations" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Conversation">
           <Key>
             <PropertyRef Name="Id" />
@@ -75,40 +144,58 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ResourceId" Type="Int32" Nullable="false" />
           <Property Name="FinderUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Messages" Relationship="ConfingoModel.FK_Message_Conversation" FromRole="Conversation" ToRole="Message" />
+          <NavigationProperty Name="Resource" Relationship="ConfingoModel.FK_Conversation_Resource" FromRole="Conversation" ToRole="Resource" />
+          <NavigationProperty Name="User" Relationship="ConfingoModel.FK_Conversation_User" FromRole="Conversation" ToRole="User" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="MessageText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ConsversationId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ConversationId" Type="Int32" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsMessageFromFinder" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Conversation" Relationship="ConfingoModel.FK_Message_Conversation" FromRole="Message" ToRole="Conversation" />
         </EntityType>
         <EntityType Name="Resource">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UniqueId" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UniqueId" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Resource_User" FromRole="Resource" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="ConfingoModel.FK_Resource_User" FromRole="Resource" ToRole="User" />
+          <NavigationProperty Name="Conversations" Relationship="ConfingoModel.FK_Conversation_Resource" FromRole="Resource" ToRole="Conversation" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Resources" Relationship="Self.FK_Resource_User" FromRole="User" ToRole="Resource" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Resources" Relationship="ConfingoModel.FK_Resource_User" FromRole="User" ToRole="Resource" />
+          <NavigationProperty Name="Conversations" Relationship="ConfingoModel.FK_Conversation_User" FromRole="User" ToRole="Conversation" />
         </EntityType>
+        <Association Name="FK_Message_Conversation">
+          <End Type="ConfingoModel.Conversation" Role="Conversation" Multiplicity="1" />
+          <End Type="ConfingoModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ConversationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Resource_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+          <End Type="ConfingoModel.User" Role="User" Multiplicity="1" />
+          <End Type="ConfingoModel.Resource" Role="Resource" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -118,16 +205,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ConfingoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Conversations" EntityType="Self.Conversation" />
-          <EntitySet Name="Messages" EntityType="Self.Message" />
-          <EntitySet Name="Resources" EntityType="Self.Resource" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Resource_User" Association="Self.FK_Resource_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Resource" EntitySet="Resources" />
-          </AssociationSet>
-        </EntityContainer>
+        <Association Name="FK_Conversation_Resource">
+          <End Type="ConfingoModel.Resource" Role="Resource" Multiplicity="1" />
+          <End Type="ConfingoModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversation_User">
+          <End Type="ConfingoModel.User" Role="User" Multiplicity="1" />
+          <End Type="ConfingoModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="FinderUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -137,40 +238,40 @@
           <EntitySetMapping Name="Conversations">
             <EntityTypeMapping TypeName="ConfingoModel.Conversation">
               <MappingFragment StoreEntitySet="Conversation">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
                 <ScalarProperty Name="FinderUserId" ColumnName="FinderUserId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="ConfingoModel.Message">
               <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
-                <ScalarProperty Name="ConsversationId" ColumnName="ConsversationId" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
                 <ScalarProperty Name="IsMessageFromFinder" ColumnName="IsMessageFromFinder" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Resources">
             <EntityTypeMapping TypeName="ConfingoModel.Resource">
               <MappingFragment StoreEntitySet="Resource">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ConfingoModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

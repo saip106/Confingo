@@ -14,6 +14,12 @@ namespace Confingo.DataAccess
     
     public partial class Resource
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Resource()
+        {
+            this.Conversations = new HashSet<Conversation>();
+        }
+    
         public int Id { get; set; }
         public string UniqueId { get; set; }
         public string Name { get; set; }
@@ -21,5 +27,7 @@ namespace Confingo.DataAccess
         public int UserId { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conversation> Conversations { get; set; }
     }
 }
