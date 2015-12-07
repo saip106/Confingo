@@ -7,11 +7,15 @@ namespace Confingo.Services.Controllers
 {
     public class ResourcesController : ApiController
     {
-        public GetResourcesResponse Get()
+        [HttpGet]
+        [Route("api/users/{userId}/resources")]
+        public GetResourcesResponse Get(int userId)
         {
             using (var entities = new ConfingoEntities())
             {
-                var resources = entities.Resources
+                var resources = entities
+                    .Resources
+                    .Where(x => x.UserId == userId)
                     .Select(x => new ResourceDto
                     {
                         Name = x.Name,
@@ -48,6 +52,11 @@ namespace Confingo.Services.Controllers
                 };
             }
         }
+    }
+
+    public class GetResourceResponse
+    {
+        public ResourceDto Resource { get; set; }
     }
 
     public class CreateResourceRequest
