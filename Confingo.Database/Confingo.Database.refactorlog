@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="44ab6681-fd16-4771-a559-716f518acc4b" ChangeDateTime="12/05/2015 16:39:52">
+    <Property Name="ElementName" Value="[dbo].[User].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FirstName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0b534bd8-6e2b-4815-a925-e12fcf55762c" ChangeDateTime="12/05/2015 16:45:54">
+    <Property Name="ElementName" Value="[dbo].[Message].[ToUserUd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Message]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ToUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e9205f9e-eac3-4400-9c8b-989c81d87a39" ChangeDateTime="12/05/2015 17:06:48">
+    <Property Name="ElementName" Value="[dbo].[Message].[Message]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Message]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MessageText" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="97203189-52a1-432e-902b-80cb06a9245c" ChangeDateTime="12/05/2015 17:09:41">
+    <Property Name="ElementName" Value="[dbo].[Conversation].[FounderName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Conversation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FounderUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="be64c866-671a-4e42-af9e-57d9b4af31f9" ChangeDateTime="12/05/2015 17:15:34">
+    <Property Name="ElementName" Value="[dbo].[Conversation].[FounderUserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Conversation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FounderName" />
+  </Operation>
+</Operations>
