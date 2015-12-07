@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name confingoApp
- * @description
- * # confingoApp
- *
- * Main module of the application.
- */
 angular
   .module('confingoApp', [
     'ngAnimate',
@@ -20,16 +12,21 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'scripts/resource/resource-list.html',
+        controller: 'ResourceListController',
+        controllerAs: 'controller'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/login', {
+        templateUrl: 'scripts/login/login.html',
+        controller: 'LoginController',
+        controllerAs: 'loginController'
+      })
+      .when('/resources', {
+        templateUrl: 'scripts/resource/resource-list.html',
+        controller: 'ResourceListController',
+        controllerAs: 'controller'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/resources'
       });
   });
