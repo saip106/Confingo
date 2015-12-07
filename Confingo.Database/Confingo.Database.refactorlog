@@ -35,4 +35,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FounderName" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5f4f752f-7bb2-4c92-b621-461bb9253fe0" ChangeDateTime="12/07/2015 13:10:36">
+    <Property Name="ElementName" Value="[dbo].[Conversation].[FounderName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Conversation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FinderUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e06e44a2-36eb-4999-b1a5-754bceb2a303" ChangeDateTime="12/07/2015 13:11:34">
+    <Property Name="ElementName" Value="[dbo].[Message].[IsMessageFromFounder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Message]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsMessageFromFinder" />
+  </Operation>
 </Operations>

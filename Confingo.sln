@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.Services", "Confin
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Confingo.Database", "Confingo.Database\Confingo.Database.sqlproj", "{E7E6BCF6-73D4-456D-88FC-F11E8A7D5ED1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.DataAccess", "Confingo.DataAccess\Confingo.DataAccess.csproj", "{F6057F51-0254-44DC-B8A0-B1390EC55CCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.BusinessLayer", "Confingo.BusinessLayer\Confingo.BusinessLayer.csproj", "{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,14 @@ Global
 		{E7E6BCF6-73D4-456D-88FC-F11E8A7D5ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7E6BCF6-73D4-456D-88FC-F11E8A7D5ED1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E7E6BCF6-73D4-456D-88FC-F11E8A7D5ED1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F6057F51-0254-44DC-B8A0-B1390EC55CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6057F51-0254-44DC-B8A0-B1390EC55CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6057F51-0254-44DC-B8A0-B1390EC55CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6057F51-0254-44DC-B8A0-B1390EC55CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

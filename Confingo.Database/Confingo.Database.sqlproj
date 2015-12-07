@@ -69,4 +69,7 @@
   <ItemGroup>
     <RefactorLog Include="Confingo.Database.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Confingo.Database.publish.xml" />
+  </ItemGroup>
 </Project>

@@ -2,5 +2,5 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
     [ResourceId] INT NOT NULL, 
-    [FounderName] NVARCHAR(200) NOT NULL
+    [FinderUserId] INT NOT NULL
 )

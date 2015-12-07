@@ -4,5 +4,5 @@
     [MessageText] NVARCHAR(500) NOT NULL, 
     [ConsversationId] INT NOT NULL, 
     [TimeStamp] DATETIME2 NOT NULL, 
-    [IsMessageFromFounder] BIT NOT NULL
+    [IsMessageFromFinder] BIT NOT NULL
 )
