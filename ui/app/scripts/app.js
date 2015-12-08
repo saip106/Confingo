@@ -8,7 +8,9 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'ui.grid'
+        'ui.grid',
+        'formly',
+        'formlyBootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider

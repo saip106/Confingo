@@ -1,9 +1,6 @@
 <div>
     <h3>Add New Resource</h3>
-    <div>
-        <input type="button"
-               class="btn btn-success"
-               value="Add"
-               ng-click="controller.addNewResource()"/>
-    </div>
+    <formly-form model="controller.resource" fields="controller.resourceFields">
+        <button type="submit" class="btn btn-success" ng-click="controller.add(controller.resource)">Add</button>
+    </formly-form>
 </div>
