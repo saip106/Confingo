@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Confingo.BusinessLayer;
 using Confingo.DataAccess;
 
@@ -9,6 +10,7 @@ namespace Confingo.Services.Controllers
     {
         [HttpGet]
         [Route("api/users/{userId}/resources")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public GetResourcesResponse Get(int userId)
         {
             using (var entities = new ConfingoEntities())

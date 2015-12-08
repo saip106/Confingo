@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Confingo.Services
 {
@@ -12,6 +7,8 @@ namespace Confingo.Services
     {
         public static void Register(HttpConfiguration config)
         {
+            // Enable Cross domain requests for all origins. We may want to limit this to a finite set.
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
