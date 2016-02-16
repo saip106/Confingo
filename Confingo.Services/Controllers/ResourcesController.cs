@@ -10,7 +10,6 @@ namespace Confingo.Services.Controllers
     {
         [HttpGet]
         [Route("api/users/{userId}/resources")]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public GetResourcesResponse Get(int userId)
         {
             using (var entities = new ConfingoEntities())
