@@ -3,9 +3,9 @@ using System.Text;
 
 namespace Confingo.BusinessLayer
 {
-    public class UniqueInvitationCodeGenerator 
+    public class UniqueCodeGenerator 
     {
-        private static readonly int MaxSize = 5;
+        private const int MaxSize = 6;
         private static readonly char[] Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
 
         public string GetUniqueKey()

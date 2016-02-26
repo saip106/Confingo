@@ -40,7 +40,7 @@ namespace Confingo.Services.Controllers
                 {
                     Name = request.Name,
                     Description = request.Description,
-                    UniqueId = new UniqueInvitationCodeGenerator().GetUniqueKey(),
+                    UniqueId = new UniqueCodeGenerator().GetUniqueKey(),
                     UserId = request.UserId
                 };
                 

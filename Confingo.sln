@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.DataAccess", "Conf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.BusinessLayer", "Confingo.BusinessLayer\Confingo.BusinessLayer.csproj", "{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{59DF9679-5F01-427E-83A1-309AE92C8351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confingo.BulkCodeGenerator", "Confingo.BulkCodeGenerator\Confingo.BulkCodeGenerator.csproj", "{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,8 +39,15 @@ Global
 		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE378E50-7AC2-4349-9C2A-2A61BB4F2A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF091517-A03B-4FC6-96CF-43E4BC7E7D7B} = {59DF9679-5F01-427E-83A1-309AE92C8351}
 	EndGlobalSection
 EndGlobal
